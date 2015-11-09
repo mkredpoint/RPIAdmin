@@ -41,33 +41,18 @@ while (-not $completed)
 	}
 	else
 	{		
-		"Stopping RPI Services" | out-file -Filepath $logfile -append
-		#TaskManager
-		$serviceTM = 'ResonanceTaskManagerService'
-		$serviceinfoTM = Get-Service $serviceTM
-		if ($serviceinfoTM.Status -eq 'Running')
+	    "Stopping RPI Services" | out-file -Filepath $logfile -append
+		$rpServices = "ResonanceTaskManagerService", "ResonanceWorkflowManager", "ResonanceNodeManager"
+		
+		foreach ($rpService in $rpServices)	
 		{
-			"Stopping Service: $($serviceTM)" | out-file -Filepath $logfile -append
-			 Stop-Service $serviceTM
+			$serviceinfo = Get-Service $rpService
+			if ($serviceinfo.Status -eq 'Running')
+			{
+				"Stopping Service: $($rpService)" | out-file -Filepath $logfile -append
+				Stop-Service $rpService
         
-		}
-		#Workflow Manager
-		$serviceWM = 'ResonanceWorkflowManager'
-		$serviceinfoWM = Get-Service $serviceWM
-		if ($serviceinfoWM.Status -eq 'Running')
-		{
-			"Stopping service: $($serviceWM)" | out-file -Filepath $logfile -append
-			 Stop-Service $serviceWM
-        
-		}
-		#NodeManager
-		$serviceNM = 'ResonanceNodeManager'
-		$serviceinfoNM = Get-Service $serviceNM
-		if ($serviceinfoNM.Status -eq 'Running')
-		{
-			"Stopping service: $($serviceNM)" | out-file -Filepath $logfile -append
-			 Stop-Service $serviceNM -force
-        
+			}
 		}
 		
 		$completed = $true
