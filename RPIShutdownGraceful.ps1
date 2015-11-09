@@ -1,6 +1,8 @@
 # this powershell script can be used to gracefully stop an RPI node
-# Note: set $wfHost according to the node you want to gracefully shutdown
-#       also, you may want to increase retry and sleep time
+# Notes: Set $wfHost according to the node you want to gracefully shutdown
+#        Set $SqlConnection.ConnectionString according to your environment
+#        You may want to increase $retryMax and $retrySleep
+#        
 
 $logfile = "C:\Temp\rpi_services_stop_$(get-date -format `"yyyyMMdd_hhmmsstt`").txt"
 $wfHost = 1 # set to the workflow host ID for your node 
