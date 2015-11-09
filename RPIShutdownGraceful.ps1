@@ -17,7 +17,7 @@ $retryMax = 5
 $retrySleep = 20
 $completed = $false
 
-$SqlCmd.CommandText = "SELECT [Status] from dbo.rpi_WorkflowHosts"
+$SqlCmd.CommandText = "SELECT [Status] from dbo.rpi_WorkflowHosts Where WorkflowHostID = $($wfHost)"
 
 while (-not $completed) 
  {
