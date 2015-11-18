@@ -1,4 +1,4 @@
-# Powershell script to restar task manager if there are hung tasks.
+# Powershell script to restart task manager if there are hung tasks.
 # Needs to be run in conjunction with a stored procedure named rpHngcnt
 # Set $SqlConnection.ConnectionString accordingly
 #
