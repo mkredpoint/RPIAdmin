@@ -1,4 +1,4 @@
-# this powershell script can be used to gracefully stop an RPI node
+ - # this powershell script can be used to gracefully stop an RPI node
 # Notes: Set $wfHost according to the node you want to gracefully shutdown
 #        Set $SqlConnection.ConnectionString according to your environment
 #        You may want to increase $retryMax and $retrySleep

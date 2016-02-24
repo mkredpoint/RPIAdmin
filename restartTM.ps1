@@ -34,8 +34,7 @@ foreach ($Row in $Res)
 {
  if ($Row[0] -gt 0) 
  {
-    $Res2 = Exec-Sproc -Conn $SqlConnection -Sproc "rpHngStats"
-    $Res2 | out-file -Filepath $logfile -append
+
 
     if ($serviceinfo.Status -eq 'Running')
     {
