@@ -85,8 +85,7 @@ WHERE  DATEDIFF(hh,
 			    dw.LastEventTimestamp), GETDATE()) >= @hangthreshold
        AND dw.[DynamicStatus] IN ( 'Playing', 'ResumePlayRequested', 'PlayRequested' ) 
        AND dw.IsSandBox = 0 
-	   AND DATEADD(hh,-1,GETDATE()) > dw.NextTriggerTime
-
+	   AND (dw.NextTriggerTime IS NULL OR DATEADD(hh,-1,GETDATE()) > dw.NextTriggerTime) 
 
 --hanging parent trigger
 UNION ALL 
@@ -123,8 +122,7 @@ WHERE
 		    DATEDIFF(hh, GETUTCDATE(), 
 			  GETDATE()), 
 			    dw.LastEventTimestamp), GETDATE()) >= @hangthreshold
-
-	    AND DATEADD(hh,-1,GETDATE()) > dw.NextTriggerTime
+	   AND (dw.NextTriggerTime IS NULL OR DATEADD(hh,-1,GETDATE()) > dw.NextTriggerTime) 
 		
 		
 ) AS CTE_dummy
